@@ -18,7 +18,7 @@ public partial class Model_UploadData : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Response.Write("0");
     }
 
     protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
