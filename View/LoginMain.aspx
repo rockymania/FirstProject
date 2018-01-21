@@ -23,6 +23,15 @@
          th.acc{
              font-size:20px;
          }
+         th.login{
+             position:absolute;
+         }
+         td.hide{
+             border:0px;
+         }
+        .auto-style1 {
+            text-align: center;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="../CSS/layout.css" />
 </head>
@@ -31,24 +40,30 @@
         <table class="BOX" border ="5">
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Account_Label" runat="server" Text="Account:"></asp:Label></th>
-            <th> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> </th>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Input_Acc" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+            <td colspan="2"> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> </td>
             </tr>
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Password_Label" runat="server" Text="Password:"></asp:Label></th>
-            <th> <asp:TextBox ID="Input_Pass" runat="server" ></asp:TextBox> </th>
+            <td  colspan="2"> <asp:TextBox ID="Input_Pass" runat="server" ></asp:TextBox> </td>
             </tr>
             <tr>
-                <th>
-                    <a href="javascript:Test()" >登入</a>
-                </th>
+            <th> <asp:Button ID="Reset_Btn" runat="server" Text="重置" BackColor="Red" OnClick="Reset_Btn_Click" style="height: 21px"/></th>
+            <td class="auto-style1" colspan="2"> <a href="javascript:Test()" aria-orientation="vertical" >登入</a> </td> 
+            </tr>
+            <tr>
+                <td colspan="3" class="auto-style1">
+				<a href="javascript:Test()">註冊帳號</a> , <a href="lostpw.aspx">忘記密碼？</a><br />
+				</td>
             </tr>
         </table>
-    </form>
     <script>
         function Test()
         {
-            alert("0!!");
+            alert("!");
         }
     </script>
-</body>
+        
+    </form>
+    </body>
 </html>
