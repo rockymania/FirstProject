@@ -32,28 +32,38 @@
         .auto-style1 {
             text-align: center;
         }
+        .auto-style2 {
+            width: 442px;
+        }
+        .auto-style3 {
+            text-align: center;
+            width: 442px;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="../CSS/layout.css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <table class="BOX" border ="5">
+        <table  border ="5">
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Account_Label" runat="server" Text="Account:"></asp:Label></th>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Input_Acc" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
-            <td colspan="2"> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> </td>
+            <td colspan="2" class="auto-style2"> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Input_Acc" ErrorMessage="請輸入帳號" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Password_Label" runat="server" Text="Password:"></asp:Label></th>
-            <td  colspan="2"> <asp:TextBox ID="Input_Pass" runat="server" ></asp:TextBox> </td>
+            <td  colspan="2" class="auto-style2"> <asp:TextBox ID="Input_Pass" runat="server" ></asp:TextBox> 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Input_Pass" ErrorMessage="請輸入密碼" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
-            <th> <asp:Button ID="Reset_Btn" runat="server" Text="重置" BackColor="Red" OnClick="Reset_Btn_Click" style="height: 21px"/></th>
-            <td class="auto-style1" colspan="2"> <a href="javascript:Test()" aria-orientation="vertical" >登入</a> </td> 
+            <th> <asp:Button ID="Reset_Btn" runat="server" Text="重置" BackColor="Red" OnClick="Reset_Btn_Click" style="height: 21px" CausesValidation="False"/></th>
+            <td class="auto-style3" colspan="2"> <a href="javascript:Test()" aria-orientation="vertical" >登入</a> </td> 
             </tr>
             <tr>
                 <td colspan="3" class="auto-style1">
-				<a href="javascript:Test()">註冊帳號</a> , <a href="lostpw.aspx">忘記密碼？</a><br />
+				<a href="javascript:Test()">註冊帳號</a> , <a href="lostpw.aspx?lost=1">忘記密碼？</a><br />
 				</td>
             </tr>
         </table>
