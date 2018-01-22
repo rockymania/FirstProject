@@ -44,7 +44,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <table  border ="5">
+        <table  border="1">
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Account_Label" runat="server" Text="Account:"></asp:Label></th>
             <td colspan="2" class="auto-style2"> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> 
@@ -63,16 +63,10 @@
             </tr>
             <tr>
                 <td colspan="3" class="auto-style1">
-				<a href="javascript:Test()">註冊帳號</a> , <a href="lostpw.aspx?lost=1">忘記密碼？</a><br />
+				<a href="SignUp.aspx">註冊帳號</a> , <a href="lostpw.aspx?lost=1">忘記密碼？</a><br />
 				</td>
             </tr>
         </table>
-    <script>
-        function Test()
-        {
-            alert("!");
-        }
-    </script>
         
     </form>
     </body>

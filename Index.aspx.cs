@@ -41,7 +41,7 @@ public partial class Index : System.Web.UI.Page
        IPAddress XXX = Dns.Resolve(Dns.GetHostName()).AddressList[0];
 
         String URL = string.Empty;
-        if (Session["LoginType"] == "1")
+        if ((string)Session["LoginType"] == "1")
             URL = mServerUrl + string.Format(mCreateUrl, 1,aAccount,aPassword, aMail, XXX.ToString());
         else
             URL = mServerUrl + string.Format(mCreateUrl, 0, aAccount, aPassword, "@@", XXX.ToString());
@@ -84,7 +84,7 @@ public partial class Index : System.Web.UI.Page
             return false;
 
         //判斷是否可以創角
-        if(Session["LoginType"] == "1")
+        if((string)Session["LoginType"] == "1")
         {
             //創角階段
             //要判斷 PassWord_Text 是否等於 CheckPassword_Text
