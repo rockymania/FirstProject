@@ -44,10 +44,7 @@ public partial class View_SignUp : System.Web.UI.Page
             vResult = vWb.DownloadString(zURL);
         }
 
-        //Response.Write(vResult);
-
-
-        GetResultString(vResult);
+        Response.Write(GetResultString(vResult));
     }
 
     private bool CheckAccount()
