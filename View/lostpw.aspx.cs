@@ -78,4 +78,9 @@ public partial class View_lostpw : System.Web.UI.Page
                
         }
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LoginMain.aspx");
+    }
 }

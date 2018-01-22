@@ -26,6 +26,9 @@
         </div>
     &nbsp;
         <asp:Label ID="GetPW" runat="server" Visible="False"></asp:Label>
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" CausesValidation="False" OnClick="Button1_Click" Text=" 返回登入畫面" />
     </form>
 </body>
 </html>

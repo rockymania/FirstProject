@@ -59,7 +59,7 @@
             </tr>
             <tr>
             <th> <asp:Button ID="Reset_Btn" runat="server" Text="重置" BackColor="Red" OnClick="Reset_Btn_Click" style="height: 21px" CausesValidation="False"/></th>
-            <td class="auto-style3" colspan="2"> <a href="javascript:Test()" aria-orientation="vertical" >登入</a> </td> 
+            <td class="auto-style3" colspan="2"> <a href="javascript:Login()" aria-orientation="vertical" >登入</a> </td> 
             </tr>
             <tr>
                 <td colspan="3" class="auto-style1">
@@ -69,5 +69,14 @@
         </table>
         
     </form>
+    <script>
+        function Login() {
+            var aAccValue = document.getElementById('Input_Acc').value; //id 看控件代號
+            var aPassValue = document.getElementById('Input_Pass').value; //id 看控件代號 
+            //var aUrl = "http://192.168.8.104/Login.aspx?PlayerID=aAccValue&Password=aPass"
+        }
+    </script>
+
+
     </body>
 </html>
