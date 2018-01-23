@@ -34,29 +34,27 @@
 <body>
     <form id="form1" runat="server">
         
-        <asp:Panel ID="Panel1" runat="server" Height="309px" Width="221px">
-            <asp:Label ID="AccountTitle" runat="server" Text="帳號"></asp:Label>
-            <br />
-            <asp:TextBox ID="AccountText" runat="server"></asp:TextBox>
-            <br />
-            <br />
-            <asp:Label ID="PasswordTitle" runat="server" Text="密碼"></asp:Label>
-            <br />
-            <asp:TextBox ID="PasswordText" runat="server" TextMode="Password"></asp:TextBox>
-            <br />
-            <br />
-            <asp:Label ID="AgianPasswordTitle" runat="server" Text="再次輸入密碼"></asp:Label>
-            <br />
-            <asp:TextBox ID="AgianPasswordText" runat="server" TextMode="Password"></asp:TextBox>
-            <br />
-            <br />
-            <asp:Label ID="MailTitle" runat="server" Text="信箱"></asp:Label>
+        <asp:Panel ID="Panel1" runat="server" Height="242px" Width="206px">
+            <asp:Label ID="MailTitle" runat="server" Text="請輸入註冊信箱"></asp:Label>
             <br />
             <asp:TextBox ID="MailText" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="SubmitButton" runat="server" Text="確認" OnClick="SubmitButton_Click" />
+            <asp:Label ID="PasswordTitle" runat="server" Text="請輸入密碼"></asp:Label>
+            <br />
+            <asp:TextBox ID="PasswordText" runat="server" TextMode="Password"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="AgianPasswordTitle" runat="server" Text="請再次輸入密碼"></asp:Label>
+            <br />
+            <asp:TextBox ID="AgianPasswordText" runat="server" TextMode="Password"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="SubmitButton" runat="server" OnClick="SubmitButton_Click" Text="確認" />
             <asp:Button ID="ClearButton" runat="server" Text="清除" OnClick="ClearButton_Click" />
+            <br />
+            <br />
+            <br />
         </asp:Panel>
     </form>
 </body>

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class View_SignUp : System.Web.UI.Page
 {
     private string mServerUrl = "http://192.168.8.104/";
-    private string mURL = "CreateAccount.aspx?Account={0}&Password={1}&Email={2}";
+    private string mURL = "CreateAccount.aspx?Password={0}&Email={1}";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,7 +18,6 @@ public partial class View_SignUp : System.Web.UI.Page
 
     protected void ClearButton_Click(object sender, EventArgs e)
     {
-        AccountText.Text = "";
         PasswordText.Text = "";
         AgianPasswordText.Text = "";
         MailText.Text = "";
@@ -26,16 +25,13 @@ public partial class View_SignUp : System.Web.UI.Page
 
     protected void SubmitButton_Click(object sender, EventArgs e)
     {
-        if (CheckAccount() == false)
-            return;
-
         if (CheckPassword() == false)
             return;
 
         if (CheckMail() == false)
             return;
 
-        string zURL = mServerUrl + string.Format(mURL, AccountText.Text, PasswordText.Text, MailText.Text);
+        string zURL = mServerUrl + string.Format(mURL, PasswordText.Text, MailText.Text);
 
         string vResult = string.Empty;
 
@@ -45,17 +41,6 @@ public partial class View_SignUp : System.Web.UI.Page
         }
 
         Response.Write(GetResultString(vResult));
-    }
-
-    private bool CheckAccount()
-    {
-        if (AccountText.Text == "")
-        {
-            Response.Write("帳號為空");
-            return false ;
-        }
-
-        return true;
     }
 
     private bool CheckPassword()
@@ -106,10 +91,10 @@ public partial class View_SignUp : System.Web.UI.Page
                 zResultString = "成功";
                 break;
             case "1":
-                zResultString = "帳號重複";
-                break;
-            case "2":
                 zResultString = "信箱重複";
+                break;
+            default:
+                zResultString = "伺服器錯誤";
                 break;
         }
 
