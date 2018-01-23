@@ -35,6 +35,7 @@ public partial class Model_M_Login : System.Web.UI.Page
             using (var wb = new WebClient())
             {
                 aGetMessage = wb.DownloadString(aUrl);
+                Response.Write(aGetMessage);
             }
         }
         catch

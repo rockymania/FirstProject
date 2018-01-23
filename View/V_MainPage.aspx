@@ -6,12 +6,24 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src ="../js/Button.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <h1>登入成功。這個是主頁</h1>
+            <p>
+                <asp:ImageButton OnClick="Control_Money_Click" ID="Control_Money" runat="server" ImageUrl="~/Image/C.jpg"  Width="120" Height="120"/>
+            </p>
+            <a href="javascript:GotoContolMoney()">第一個階段</a>
         </div>
     </form>
+    <script>
+        function GotoContolMoney() {
+            OpenMoneyControl();
+        }
+    </script>
 </body>
 </html>

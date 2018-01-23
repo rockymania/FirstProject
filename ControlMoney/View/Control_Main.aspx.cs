@@ -5,14 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class View_V_MainPage : System.Web.UI.Page
+public partial class ControlMoney_View_Control_Main : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Control_Money_Click(object sender, ImageClickEventArgs e)
     {
 
     }
