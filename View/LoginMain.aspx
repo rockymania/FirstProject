@@ -41,6 +41,7 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="../CSS/layout.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -71,9 +72,29 @@
     </form>
     <script>
         function Login() {
-            var aAccValue = document.getElementById('Input_Acc').value; //id 看控件代號
-            var aPassValue = document.getElementById('Input_Pass').value; //id 看控件代號 
-            //var aUrl = "http://192.168.8.104/Login.aspx?PlayerID=aAccValue&Password=aPass"
+            var aAccValue = document.getElementById('Input_Acc').value; 
+            var aPassValue = document.getElementById('Input_Pass').value; 
+            //準備登入
+            $.get("../Model/M_Login.aspx",
+                {
+                    Acc: aAccValue,
+                    Pass: aPassValue,
+                },
+                function (result) {
+                    if (result == "99")
+                        alert('Fail', '失敗');
+                    else if (result == "1")
+                        alert('Fail', '無此帳號');
+                    else if (result == "2")
+                        alert('Fail', '密碼錯誤');
+                    else if (result == "0") {
+                        var aUrl = "V_MainPage.aspx";
+                        location.replace(aUrl);
+                        window.opener.location.reload();
+                        window.close();
+                    }
+                }
+            );
         }
     </script>
 
