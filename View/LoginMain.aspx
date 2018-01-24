@@ -88,7 +88,7 @@
                     else if (result == "2")
                         alert('Fail', '密碼錯誤');
                     else if (result == "0") {
-                        var aUrl = "V_MainPage.aspx";
+                        var aUrl = "V_MainPage.aspx?Acc=aAccValue";
                         location.replace(aUrl);
                         window.opener.location.reload();
                         window.close();
