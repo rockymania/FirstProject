@@ -8,7 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Index : System.Web.UI.Page
 {
-    private string mServerUrl = "http://192.168.8.104/";
+    //private string mServerUrl = "http://192.168.8.104/";
+    private string mServerUrl = "http://MobileDaddy.net/WebService/";
     private string mCreateUrl = "CreateUser.aspx?Kind={0}&Account={1}&Password={2}&Mail={3}&IPAddress={4}";
     private int mStatusKind;
 

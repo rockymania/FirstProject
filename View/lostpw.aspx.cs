@@ -8,7 +8,8 @@ using System.Net;
 
 public partial class View_lostpw : System.Web.UI.Page
 {
-    private string mServerUrl = "http://192.168.8.104/GetPW.aspx?Mail={0}";
+    //private string mServerUrl = "http://192.168.8.104/GetPW.aspx?Mail={0}";
+    private string mServerUrl = "http://MobileDaddy.net/WebService/GetPW.aspx?Mail={0}";
 
     protected void Page_Load(object sender, EventArgs e)
     {       

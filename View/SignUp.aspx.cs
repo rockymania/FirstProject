@@ -8,7 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class View_SignUp : System.Web.UI.Page
 {
-    private string mServerUrl = "http://192.168.8.104/";
+    //private string mServerUrl = "http://192.168.8.104/";
+    private string mServerUrl = "http://MobileDaddy.net/WebService/";
     private string mURL = "CreateAccount.aspx?Password={0}&Email={1}";
 
     protected void Page_Load(object sender, EventArgs e)

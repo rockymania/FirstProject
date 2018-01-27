@@ -23,7 +23,7 @@
 <body>
     <form id="form1" runat="server">
         <div id="TopTitle">
-            <a>新增紀錄</a><a>觀看紀錄</a><a>檢查類別</a><a>修改紀錄</a><a>離開</a>
+            <a href="http://MobileDaddy.net/WebClinet/Model/UploadData.aspx">新增紀錄</a><a>觀看紀錄</a><a>檢查類別</a><a>修改紀錄</a><a>離開</a>
         </div>       
     </form>
      <button>縮放</button>

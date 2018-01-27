@@ -10,7 +10,8 @@ using System.Web.UI.WebControls;
 
 public partial class Model_M_Login : System.Web.UI.Page
 {
-    private string mServerUrl = "http://192.168.8.104/";
+    //private string mServerUrl = "http://192.168.8.104/";
+    private string mServerUrl = "http://MobileDaddy.net/WebService/";
     private string mLoginUrl = "LoginUser.aspx?Acc={0}&Pass={1}";
 
 
