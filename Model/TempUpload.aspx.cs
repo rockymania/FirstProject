@@ -9,16 +9,14 @@ public partial class Model_TempUpload : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string vPath = "Image/";
-
+        string savePath = Server.MapPath("~/Image/");
+        string appPath = Request.PhysicalApplicationPath;
         foreach (string f in Request.Files.AllKeys)
         {
             HttpPostedFile file = Request.Files[f];
 
-            string vTemp = (vPath + file.FileName);
-            Response.Write("<Script language='JavaScript'>alert("+ vTemp+");</Script>");
-
-            file.SaveAs(vPath + file.FileName);
+            file.SaveAs(appPath + savePath + file.FileName);
+            //file.SaveAs(savePath + file.FileName);
         }
     }
 }
