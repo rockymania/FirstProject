@@ -64,11 +64,13 @@ public partial class Model_UploadData : System.Web.UI.Page
             Directory.CreateDirectory(aTempSavePic);
         }
 
-        //private string mServerUrl = "http://192.168.8.104/Test.aspx";
-        string mUrl = Server.MapPath(".")+ "/Money_Upload.aspx";// "http://MobileDaddy.net/WebService/Test.aspx";//http://MobileDaddy.net/WebClinet/TempData/Money_Upload.aspx
+        //string mUrl = "http://192.168.8.104/Test.aspx";
+        string mUrl = "http://MobileDaddy.net/WebClinet/Model/TempUpload.aspx";// "http://MobileDaddy.net/WebService/Test.aspx";//http://MobileDaddy.net/WebClinet/TempData/Money_Upload.aspx
 
         WebClient mMyWebClient = new WebClient();
-        
+
+        mMyWebClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+
         string savePath = aTempSavePic +"//"+ UploadPic.PostedFile.FileName;
 
         UploadPic.PostedFile.SaveAs(savePath);
@@ -77,7 +79,7 @@ public partial class Model_UploadData : System.Web.UI.Page
 
         string fileName = savePath;
 
-        byte[] responseArray = mMyWebClient.UploadFile(mUrl, fileName);
+        byte[] responseArray = mMyWebClient.UploadFile(mUrl, "POST", fileName);
 
         string EndString = System.Text.Encoding.ASCII.GetString(responseArray);
 

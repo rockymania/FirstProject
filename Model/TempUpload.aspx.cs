@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Model_Money_Upload : System.Web.UI.Page
+public partial class Model_TempUpload : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -14,6 +14,9 @@ public partial class Model_Money_Upload : System.Web.UI.Page
         foreach (string f in Request.Files.AllKeys)
         {
             HttpPostedFile file = Request.Files[f];
+
+            string vTemp = (vPath + file.FileName);
+            Response.Write("<Script language='JavaScript'>alert("+ vTemp+");</Script>");
 
             file.SaveAs(vPath + file.FileName);
         }
