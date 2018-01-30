@@ -38,7 +38,11 @@
             </div><br />
 
             <div>
-                <a href="V_Test.aspx" target="View"> <input type ="button" value ="客訴明細" class="ButtonList"" /></a>
+                <a href="V_Test.aspx" target="View"> <input type ="button" value ="客戶留言" class="ButtonList"" /></a>
+            </div><br />
+
+            <div>
+                <a href="V_MessageBoard.aspx" target="View"> <input type ="button" value ="留言版" class="ButtonList"" /></a>
             </div><br />
 
             <div> </div>
