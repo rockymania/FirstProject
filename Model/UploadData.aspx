@@ -32,10 +32,7 @@
             時間:<asp:TextBox ID="datepicker" runat="server"></asp:TextBox>
             <br />
             <br />
-            是否上傳照片:<asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" Height="47px" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="56px">
-                <asp:ListItem Value="0">是</asp:ListItem>
-                <asp:ListItem Selected="True" Value="1">否</asp:ListItem>
-            </asp:RadioButtonList>
+           
             <br />
             <asp:Button ID="Confirm1" runat="server" OnClick="Confirm1_Click" Text="確定上傳" />
             <br />
@@ -45,6 +42,11 @@
                 <br />
                 <asp:Button ID="ConfirmUpload" runat="server" CausesValidation="False" OnClick="ConfirmUpload_Click" Text="確定上傳" />
             </asp:Panel>
+
+             <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" Height="47px" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="56px" Visible="False">
+                <asp:ListItem Value="0">是</asp:ListItem>
+                <asp:ListItem Selected="True" Value="1">否</asp:ListItem>
+            </asp:RadioButtonList>
         </div>
     </form>
 </body>

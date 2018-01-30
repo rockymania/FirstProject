@@ -9,14 +9,18 @@ public partial class Model_TempUpload : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string savePath = Server.MapPath("~/Image/");
+        string savePath = Server.MapPath("~/WebClinet/Model/Image/");
         string appPath = Request.PhysicalApplicationPath;
         foreach (string f in Request.Files.AllKeys)
         {
             HttpPostedFile file = Request.Files[f];
 
-            file.SaveAs(appPath + savePath + file.FileName);
+            //file.SaveAs(appPath + savePath + file.FileName);
             //file.SaveAs(savePath + file.FileName);
+            //Response.Write(file.FileName);
+            Response.Write(savePath + file.FileName);
         }
+        
+
     }
 }

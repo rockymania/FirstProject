@@ -11,20 +11,85 @@ public partial class Model_UploadData : System.Web.UI.Page
 {
     //private string mServerUrl = "http://192.168.8.104/";
     //private string mServerUrl = "http://MobileDaddy.net/WebService/";
-    private string mServerUrl = "http://MobileDaddy.net/WebClinet/TempData/";
+    
 
     //private string mUploadUrl = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Pic={4}";
-    //private string mUpload2Url = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}";
+    
+    private string mUploadUrl = "M_MoneyControl.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Pic={4}";
+    
+    private string mUpload3Url = "M_MoneyControl.aspx?Kind={0}";
 
-    private string mUploadUrl = "Money_Upload.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Pic={4}";
-    private string mUpload2Url = "Money_Upload.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}";
-    private string mUpload3Url = "Money_Upload.aspx?Kind={0}";
+    private string mServerUrl = "http://MobileDaddy.net/WebClinet/ControlMoney/Model/";
+    private string mUploadData = "M_MoneyControl.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Money={4}";
+
 
     private string TestURL = @"D:\Pic\";
     private string TempDir = @"D:\FileUploadDemo\";
 
     protected void Page_Load(object sender, EventArgs e)
     {
+    }
+
+    protected void Confirm1_Click(object sender, EventArgs e)
+    {
+        //沒有上傳照片的部分
+
+        //mUploadData
+        string aSelect = DropDownList1.SelectedValue;
+        string aMoney = TextBox1.Text;
+        string aTime = datepicker.Text;
+
+        if (aMoney == "")
+        {
+            Response.Write("<Script language='JavaScript'>alert('請重新輸入金額');</Script>");
+            return;
+        }
+
+        if (aTime == "")
+        {
+            Response.Write("<Script language='JavaScript'>alert('請選擇日期');</Script>");
+            return;
+        }
+
+        for (int i = 0; i < TextBox1.Text.Length; i++)
+        {
+            if (char.IsNumber(TextBox1.Text[i]))
+            {
+            }
+            else
+            {
+                Response.Write("<Script language='JavaScript'>alert('請重新輸入金額');</Script>");
+                return;
+            }
+        }
+
+        string aGetMessage = "98";
+
+        using (var wb = new WebClient())
+        {
+            string aAcc = "7788@7788.com";//(string)Session["Account"];
+            //private string mUploadData = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}";
+            string aUrl = mServerUrl + string.Format(mUploadData, 1, aAcc, aSelect, aTime, aMoney);
+
+            aGetMessage = wb.DownloadString(aUrl);
+        }
+
+        int aSwith = Convert.ToInt32(aGetMessage);
+        switch (aSwith)
+        {
+            case 0:
+                Response.Write("<Script language='JavaScript'>alert('成功');</Script>");
+                break;
+            case 1:
+                Response.Write("<Script language='JavaScript'>alert('失敗');</Script>");
+                break;
+            case 99:
+                Response.Write("<Script language='JavaScript'>alert('參數錯誤');</Script>");
+                break;
+            case 98:
+                Response.Write("<Script language='JavaScript'>alert('例外錯誤');</Script>");
+                break;
+        }
     }
 
     protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,6 +143,8 @@ public partial class Model_UploadData : System.Web.UI.Page
         //File.Delete(savePath);
 
         string fileName = savePath;
+
+        //UploadPic.PostedFile.SaveAs("http://MobileDaddy.net/WebClinet/Model/Image/");
 
         byte[] responseArray = mMyWebClient.UploadFile(mUrl, "POST", fileName);
 
@@ -154,49 +221,7 @@ public partial class Model_UploadData : System.Web.UI.Page
         mMyWebClinet.DownloadFile(vPath, savePath);
     }
 
-    protected void Confirm1_Click(object sender, EventArgs e)
-    {
-        //沒有上傳照片的部分
-
-        //mUpload2Url
-        string aSelect = DropDownList1.SelectedValue;
-        string aPrize = TextBox1.Text;
-        string aTime = datepicker.Text;
-
-        if(aPrize == "")
-        {
-            Response.Write("<Script language='JavaScript'>alert('請重新輸入金額');</Script>");
-            return;
-        }
-
-        if (aTime == "")
-        {
-            Response.Write("<Script language='JavaScript'>alert('請選擇日期');</Script>");
-            return;
-        }
-
-        for (int i = 0; i < TextBox1.Text.Length; i++)
-        {
-            if (char.IsNumber(TextBox1.Text[i]))
-            {
-            }else
-            {
-                Response.Write("<Script language='JavaScript'>alert('請重新輸入金額');</Script>");
-                return;
-            }
-        }
-
-        string aGetMessage ;
-
-        using (var wb = new WebClient())
-        {
-            string aAcc = (string)Session["Account"];
-            //private string mUpload2Url = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}";
-            string aUrl = string.Format(mUpload2Url, 1, aAcc, aSelect, aTime);
-
-            //aGetMessage = wb.DownloadString(aUrl);
-        }
-    }
+    
 
     //網路COPY部分 上傳照片
     private void UploadFileBinary(string LocalFile, string UploadUrl)
