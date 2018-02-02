@@ -67,7 +67,7 @@ public partial class Model_UploadData : System.Web.UI.Page
 
         using (var wb = new WebClient())
         {
-            string aAcc = "7788@7788.com";//(string)Session["Account"];
+            string aAcc = (string)Session["Account"];
             //private string mUploadData = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}";
             string aUrl = mServerUrl + string.Format(mUploadData, 1, aAcc, aSelect, aTime, aMoney);
 

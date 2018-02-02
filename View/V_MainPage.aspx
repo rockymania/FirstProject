@@ -17,12 +17,12 @@
             <p>
                 <asp:ImageButton OnClick="Control_Money_Click" ID="Control_Money" runat="server" ImageUrl="~/Image/C.jpg"  Width="120" Height="120"/>
             </p>
-            <a href="javascript:GotoContolMoney()">第一個階段</a>
+            <a href="javascript:GotoContolMoney(0)">新增資料</a>
         </div>
     </form>
     <script>
-        function GotoContolMoney() {
-            OpenMoneyControl();
+        function GotoContolMoney(kind) {
+                OpenMoneyControl();
         }
     </script>
 </body>

@@ -6,3 +6,11 @@ function OpenMoneyControl() {
     window.opener.location.reload();
     window.close();
 }
+
+function OpenMoneyControlData() {
+    //var aUrl = "../ControlMoney/View/Control_Main.aspx";
+    //location.replace(aUrl);
+    //window.opener.location.reload();
+    //window.close();
+    alert("2");
+}
