@@ -8,8 +8,8 @@
     <title>使用者頁面</title>
 
         <frameset cols="15%,85%">
-        <frame src="V_UserButtonList.aspx" name ="UserSelect"></frame>
-        <frame src="V_DrinkMenu.aspx" name ="UserView"></frame>
+        <frame src="V_UserButtonList.aspx "noresize name ="UserSelect"></frame>
+        <frame src="V_DrinkMenu.aspx" noresize  name ="UserView"></frame>
 
         </frameset>
 </head>

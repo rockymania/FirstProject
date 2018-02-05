@@ -28,6 +28,9 @@
            <a href="V_FoodMenu.aspx" target="UserView"> <input type="button" value="餐點菜單" class="Button_List" /> </a>
        </div> 
        <div>
+           <a href="V_OrderSystem.aspx" target="UserView"> <input type="button" value="網路訂單" class="Button_List" /> </a>
+       </div> 
+       <div>
            <a href="V_MessageBoard.aspx" target="UserView"> <input type="button" value="意見留言板" class="Button_List"/> </a>
        </div> 
 
