@@ -20,6 +20,7 @@ public partial class Model_M_UserMessage : System.Web.UI.Page
                     , vName, vEmail, vPhone, vContent);
 
                 vResult = vWC.DownloadString(vStr);
+                
             }
         }
         catch
