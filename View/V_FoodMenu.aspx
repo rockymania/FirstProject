@@ -10,18 +10,25 @@
     <title></title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
     <script type="text/javascript" src ="../js/ProductDataButton.js"></script>
-    <script>
+    <style>
+        #Loading 
+        {
+            position:absolute;
+            width:50px;
+            top:50%;
+            right:50%;
+        }
 
-
-    </script>
-
+    </style>
 </head>
+
 <body>
     <form id="form1" runat="server">
         <p id="Title" style="position:absolute;left:600px;top:0px; overflow-x:hidden">食物菜單 </p>
         <div id="UserView">
             
         </div>
+        <div id="Loading" style="display:none"> <img src="../Image/Loading.gif" /> <br /> Loading </div>
     </form>
 </body>
 </html>
@@ -45,6 +52,16 @@
                         document.all["UserView"].insertAdjacentHTML("BeforeEnd", vAddStr);
                     }
                 },
+                //讓loading圖出來
+                beforeSend: function ()
+                {
+                    $("#Loading").show();
+                },
+                //讓loading圖消失
+                complete: function ()
+                {
+                    $("#Loading").hide();
+                }
             }
         );
 
@@ -60,6 +77,7 @@
 
             return vReStr;
         }
+
     });
 
 </script>
