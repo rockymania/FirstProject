@@ -6,22 +6,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
 
-public partial class View_lostpw : System.Web.UI.Page
+public partial class View_V_lostpw : System.Web.UI.Page
 {
-    //private string mServerUrl = "http://192.168.8.104/GetPW.aspx?Mail={0}";
     private string mServerUrl = "http://MobileDaddy.net/WebService/GetPW.aspx?Mail={0}";
 
     protected void Page_Load(object sender, EventArgs e)
-    {       
+    {
         int aKind = 0;
 
-        if(!Page.IsPostBack)
+        if (!Page.IsPostBack)
         {
             try
             {
                 aKind = int.Parse(Request.QueryString["lost"]);
 
-                if(aKind == 1)
+                if (aKind == 1)
                 {
                     Random aRandom = new Random();
                     string aRand = aRandom.Next(1, 1000).ToString("0000");
@@ -54,7 +53,7 @@ public partial class View_lostpw : System.Web.UI.Page
                 aGetMessage = wb.DownloadString(aSendMsg);
             }
 
-            switch(aGetMessage)
+            switch (aGetMessage)
             {
                 case "0":
                     break;
@@ -76,12 +75,12 @@ public partial class View_lostpw : System.Web.UI.Page
                     GetPW.Text = string.Format("您的帳號為{0}，你的密碼為{1}", TextBox1.Text, aGetMessage);
                     break;
             }
-               
+
         }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("LoginMain.aspx");
+        Response.Redirect("V_LoginPage.aspx");
     }
 }

@@ -1,4 +1,4 @@
-﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="GetResult.aspx.cs" Inherits="View_GetResult" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="M_TryTry.aspx.cs" Inherits="Model_M_TryTry" %>
 
 <!DOCTYPE html>
 
