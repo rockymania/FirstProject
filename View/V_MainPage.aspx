@@ -15,15 +15,17 @@
         <div>
             <h1>登入成功。這個是主頁</h1>
             <p>
-                <asp:ImageButton OnClick="Control_Money_Click" ID="Control_Money" runat="server" ImageUrl="~/Image/C.jpg"  Width="120" Height="120"/>
+                <img usemap="#Money" alt="image" data-sizes="auto" src="../Image/C.jpg" style="width:150px;height:150px;"title="Money_Control" />
             </p>
-            <a href="javascript:GotoContolMoney(0)">新增資料</a>
+            <map name="Money">
+                  <area shape="rect" coords="0,0,150,150" alt="Sun" href="V_Control_Main.aspx"/>
+            </map>
+             <p>
+                <img usemap="#Money2" alt="image" data-sizes="auto" src="../Image/B.jpg" style="width:150px;height:150px;"title="Money_Control" />
+            </p>
+
         </div>
     </form>
-    <script>
-        function GotoContolMoney(kind) {
-                OpenMoneyControl();
-        }
-    </script>
+
 </body>
 </html>

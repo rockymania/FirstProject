@@ -37,6 +37,9 @@ public partial class Model_M_Login : System.Web.UI.Page
             {
                 aGetMessage = wb.DownloadString(aUrl);
                 Response.Write(aGetMessage);
+
+                if (aGetMessage == "0")
+                    Session["Account"] = aAccount;
             }
         }
         catch

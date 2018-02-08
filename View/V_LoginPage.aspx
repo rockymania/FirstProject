@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LoginMain.aspx.cs" Inherits="View_LoginMain" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="V_LoginPage.aspx.cs" Inherits="View_V_LoginPage" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>登入畫面</title>
     <style>
         div.button1{
             text-align:left;
@@ -32,39 +32,33 @@
         .auto-style1 {
             text-align: center;
         }
-        .auto-style2 {
-            width: 442px;
-        }
         .auto-style3 {
             text-align: center;
-            width: 442px;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="../CSS/layout.css" />
+     <link rel="stylesheet" type="text/css" href="../CSS/layout.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <table  border="1">
+        <table class="BOX" border="1">
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Account_Label" runat="server" Text="Account:"></asp:Label></th>
-            <td colspan="2" class="auto-style2"> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> 
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Input_Acc" ErrorMessage="請輸入帳號" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            <td> <asp:TextBox ID="Input_Acc" runat="server" ></asp:TextBox> 
                 </td>
             </tr>
             <tr>
             <th class="acc" style="left: 500px"> <asp:Label ID="Password_Label" runat="server" Text="Password:"></asp:Label></th>
-            <td  colspan="2" class="auto-style2"> <asp:TextBox ID="Input_Pass" runat="server" ></asp:TextBox> 
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Input_Pass" ErrorMessage="請輸入密碼" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            <td > <asp:TextBox ID="Input_Pass" runat="server" TextMode="Password" ></asp:TextBox> 
                 </td>
             </tr>
             <tr>
             <th> <asp:Button ID="Reset_Btn" runat="server" Text="重置" BackColor="Red" OnClick="Reset_Btn_Click" style="height: 21px" CausesValidation="False"/></th>
-            <td class="auto-style3" colspan="2"> <a href="javascript:Login()" aria-orientation="vertical" >登入</a> </td> 
+            <td class="auto-style3"> <a href="javascript:Login()" aria-orientation="vertical" >登入</a> </td> 
             </tr>
             <tr>
-                <td colspan="3" class="auto-style1">
-				<a href="SignUp.aspx">註冊帳號</a> , <a href="lostpw.aspx?lost=1">忘記密碼？</a><br />
+                <td colspan="2" class="auto-style1">
+				<a href="SignUp.aspx">註冊帳號</a> , <a href="V_lostpw.aspx?lost=1">忘記密碼？</a><br />
 				</td>
             </tr>
         </table>
@@ -72,8 +66,14 @@
     </form>
     <script>
         function Login() {
+            //擷取資料
             var aAccValue = document.getElementById('Input_Acc').value; 
-            var aPassValue = document.getElementById('Input_Pass').value; 
+            var aPassValue = document.getElementById('Input_Pass').value;
+            //檢查帳號密碼是否為空
+            if (aAccValue == null || aAccValue == "")
+            { alert('請輸入帳號'); return; }
+            else if (aPassValue == null || aPassValue == "")
+            { alert('請輸入密碼'); return; }
             //準備登入
             $.get("../Model/M_Login.aspx",
                 {
@@ -82,13 +82,13 @@
                 },
                 function (result) {
                     if (result == "99")
-                        alert('Fail', '失敗');
+                        alert('參數錯誤');
                     else if (result == "1")
-                        alert('Fail', '無此帳號');
+                        alert('查無帳號或密碼錯誤');
                     else if (result == "2")
-                        alert('Fail', '密碼錯誤');
+                        alert('查無帳號或密碼錯誤');
                     else if (result == "0") {
-                        var aUrl = "V_MainPage.aspx?Acc=" + aAccValue;
+                        var aUrl = "V_MainPage.aspx?";
                         location.replace(aUrl);
                         window.opener.location.reload();
                         window.close();

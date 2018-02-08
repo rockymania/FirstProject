@@ -7,20 +7,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Model_UploadData : System.Web.UI.Page
+public partial class View_V_UploadData : System.Web.UI.Page
 {
-    //private string mServerUrl = "http://192.168.8.104/";
-    //private string mServerUrl = "http://MobileDaddy.net/WebService/";
-    
-
-    //private string mUploadUrl = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Pic={4}";
-    
     private string mUploadUrl = "M_MoneyControl.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Pic={4}";
-    
-    private string mUpload3Url = "M_MoneyControl.aspx?Kind={0}";
 
     private string mServerUrl = "http://MobileDaddy.net/WebClinet/ControlMoney/Model/";
-    private string mUploadData = "M_MoneyControl.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Money={4}";
+    //private string mUploadData = "M_MoneyControl.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Money={4}";
+    private string mUploadData = "Model/M_UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}&Money={4}";
 
 
     private string TestURL = @"D:\Pic\";
@@ -68,8 +61,9 @@ public partial class Model_UploadData : System.Web.UI.Page
         using (var wb = new WebClient())
         {
             string aAcc = (string)Session["Account"];
-            //private string mUploadData = "UploadData.aspx?Kind={0}&PlayerID={1}&List={2}&Time={3}";
-            string aUrl = mServerUrl + string.Format(mUploadData, 1, aAcc, aSelect, aTime, aMoney);
+
+            //string aUrl = mServerUrl + string.Format(mUploadData, 1, aAcc, aSelect, aTime, aMoney);
+            string aUrl = Server.MapPath("~") + string.Format(mUploadData, 1, aAcc, aSelect, aTime, aMoney);
 
             aGetMessage = wb.DownloadString(aUrl);
         }
@@ -124,7 +118,7 @@ public partial class Model_UploadData : System.Web.UI.Page
         //先建立要放圖片的資料夾
         string aTempSavePic = Server.MapPath(".") + "\\tempPic";
 
-        if(Directory.Exists(aTempSavePic)==false)
+        if (Directory.Exists(aTempSavePic) == false)
         {
             Directory.CreateDirectory(aTempSavePic);
         }
@@ -136,7 +130,7 @@ public partial class Model_UploadData : System.Web.UI.Page
 
         mMyWebClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 
-        string savePath = aTempSavePic +"//"+ UploadPic.PostedFile.FileName;
+        string savePath = aTempSavePic + "//" + UploadPic.PostedFile.FileName;
 
         UploadPic.PostedFile.SaveAs(savePath);
 
@@ -154,7 +148,7 @@ public partial class Model_UploadData : System.Web.UI.Page
 
         return;
 
-        
+
 
         //HttpPostedFile myFile = UploadPic.PostedFile;
 
@@ -221,7 +215,7 @@ public partial class Model_UploadData : System.Web.UI.Page
         mMyWebClinet.DownloadFile(vPath, savePath);
     }
 
-    
+
 
     //網路COPY部分 上傳照片
     private void UploadFileBinary(string LocalFile, string UploadUrl)
@@ -279,4 +273,3 @@ public partial class Model_UploadData : System.Web.UI.Page
         }
     }
 }
-
