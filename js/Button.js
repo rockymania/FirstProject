@@ -21,3 +21,9 @@ function OpenMoneyControlData() {
     //window.close();
     alert("2");
 }
+
+function OpenUrl(iUrl) {
+    location.replace(iUrl);
+    window.opener.location.reload();
+    window.close();
+}

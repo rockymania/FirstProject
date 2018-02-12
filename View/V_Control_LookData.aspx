@@ -60,10 +60,10 @@
                     <asp:BoundField DataField="CostMoney" HeaderText="CostMoney" SortExpression="CostMoney" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="TopMoney" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringDaddy %>" SelectCommand="SELECT TOP (3) RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney FROM Money_Control ORDER BY CostMoney DESC WHERE ([PlayerID] = @PlayerID)">
-                <SelectParameters>
+            <asp:SqlDataSource ID="TopMoney" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringDaddy %>" SelectCommand="SELECT TOP (3) RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney FROM Money_Control  WHERE ([PlayerID] = @PlayerID)ORDER BY CostMoney DESC ">
+            <SelectParameters>
                     <asp:SessionParameter Name="PlayerID" SessionField="Account" Type="String" />
-                </SelectParameters>
+            </SelectParameters>
             </asp:SqlDataSource>
             <br />
             <br />
@@ -75,16 +75,9 @@
                     <asp:BoundField DataField="CostMoney" HeaderText="CostMoney" ReadOnly="True" SortExpression="CostMoney" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="KindTop" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringDaddy %>" SelectCommand="select RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney from (Select Top 1 * from Money_Control WHERE Kind =0 ORDER BY CostMoney desc)a
-                            UNION
-                            select RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney from (Select Top 1 * from Money_Control WHERE Kind =1 ORDER BY CostMoney desc)b
-                            UNION
-                            select RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney from (Select Top 1 * from Money_Control WHERE Kind =2 ORDER BY CostMoney desc)c
-                            UNION
-                            select RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney from (Select Top 1 * from Money_Control WHERE Kind =3 ORDER BY CostMoney desc)d
-                            ORDER BY CostMoney desc WHERE ([PlayerID] = @PlayerID)">
+            <asp:SqlDataSource ID="KindTop" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringDaddy %>" SelectCommand="SELECT RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney FROM (SELECT TOP (1) RowID, PlayerID, Kind, DataTime, CostMoney FROM Money_Control WHERE (Kind = 0) AND (PlayerID = @PlayerID) ORDER BY CostMoney DESC) AS a UNION SELECT RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney FROM (SELECT TOP (1) RowID, PlayerID, Kind, DataTime, CostMoney FROM Money_Control AS Money_Control_3 WHERE (Kind = 1) AND (PlayerID = @PlayerID) ORDER BY CostMoney DESC) AS b UNION SELECT RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney FROM (SELECT TOP (1) RowID, PlayerID, Kind, DataTime, CostMoney FROM Money_Control AS Money_Control_2 WHERE (Kind = 2) AND (PlayerID = @PlayerID) ORDER BY CostMoney DESC) AS c UNION SELECT RowID, PlayerID, (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind, DataTime, CostMoney FROM (SELECT TOP (1) RowID, PlayerID, Kind, DataTime, CostMoney FROM Money_Control AS Money_Control_1 WHERE (Kind = 3) AND (PlayerID = @PlayerID) ORDER BY CostMoney DESC) AS d ORDER BY CostMoney DESC">
                 <SelectParameters>
-                    <asp:SessionParameter Name="PlayerID" SessionField="Account" Type="String" />
+                    <asp:SessionParameter Name="PlayerID" SessionField="Account" />
                 </SelectParameters>
             </asp:SqlDataSource>
             <br />
@@ -96,9 +89,10 @@
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="TotalKindMoney" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringDaddy %>" SelectCommand="SELECT (CASE WHEN Kind = 0 THEN N'食' WHEN Kind = 1 THEN N'衣' WHEN Kind = 2 THEN N'住' WHEN Kind = 3 THEN N'行' END) AS Kind ,Sum(CostMoney) AS TotalMoney FROM Money_Control
-GROUP BY Kind ORDER by TotalMoney desc WHERE ([PlayerID] = @PlayerID)">
+WHERE(PlayerID = @PlayerID) GROUP BY Kind ORDER by TotalMoney desc
+">
                 <SelectParameters>
-                    <asp:SessionParameter Name="PlayerID" SessionField="Account" Type="String" />
+                    <asp:SessionParameter Name="PlayerID" SessionField="Account" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </div>
@@ -111,22 +105,22 @@ GROUP BY Kind ORDER by TotalMoney desc WHERE ([PlayerID] = @PlayerID)">
                     Kind: aKind,
                 },
                 function (result) {
-                    if (result = '99') {
+                    if (result == '99') {
                         alert('參數錯誤');
                         var aUrl = "V_UploadData.aspx?";
                         location.replace(aUrl);
                         window.opener.location.reload();
                         window.close();
                     }
-                    else if (result = '1')
-                        alert('參數錯誤');
-                    else if (result = '0') {
+                    else if (result == '1')
+                        alert('錯誤');
+                    else if (result == '2') {
                         alert('目前並無資料');
                         var aUrl = "V_UploadData.aspx?";
                         location.replace(aUrl);
                         window.opener.location.reload();
                         window.close();
-                    }
+                    } else if (result == '0')
                 });
         }
         $(document).ready(function () {

@@ -17,7 +17,7 @@
     </script>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="MainPage">
         <div id="Money_Conttol_List" class="ontopDiv"></div>
         <div>
             品項:<asp:DropDownList ID="DropDownList1" runat="server" Width="50px">
@@ -36,8 +36,7 @@
             <br />
            
             <br />
-            <asp:Button ID="Confirm1" runat="server" OnClick="Confirm1_Click" Text="確定上傳" />
-            <button type="submit"  onclick="javascript:UploadData()"></button>
+            <button type="submit"  onclick="javascript:UploadData()" style="width: 107px">確定上傳</button>
             <br />
             <asp:Panel ID="Panel1" runat="server" Visible="false">
                 <asp:FileUpload ID="UploadPic" runat="server" />
@@ -50,6 +49,7 @@
                 <asp:ListItem Value="0">是</asp:ListItem>
                 <asp:ListItem Selected="True" Value="1">否</asp:ListItem>
             </asp:RadioButtonList>
+            <asp:Button ID="Confirm1" runat="server" OnClick="Confirm1_Click" Text="確定上傳" Visible="False" />
         </div>
     </form>
     <script>
@@ -82,7 +82,7 @@
                     else if (result == "2")
                         alert('查無帳號或密碼錯誤');
                     else if (result == "0") {
-                        alert('成功');
+                        OpenUrl("V_Control_LookData.aspx");
                     }
                 }
             );

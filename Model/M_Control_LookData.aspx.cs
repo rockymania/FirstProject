@@ -14,11 +14,8 @@ public partial class Model_M_Control_LookData : System.Web.UI.Page
         string aPlayerID;
         try
         {
-            aKind = int.Parse(Request.QueryString["Kind"].ToString());
+            aKind = int.Parse(Request.QueryString["Kind"]);
             aPlayerID = (string)Session["Account"];
-
-            if (aPlayerID == null)
-                aPlayerID = "7788@7788.com";
             if (aKind == 1)
             {
                 using(SqlConnection aCon = new SqlConnection("Data Source=184.168.47.10;Integrated Security=False;User ID=MobileDaddy;PASSWORD=Aa54380438!;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
@@ -30,8 +27,10 @@ public partial class Model_M_Control_LookData : System.Web.UI.Page
                     using (SqlCommand aComm = new SqlCommand(aSqlStr, aCon))
                     {
                         SqlDataReader aReader = aComm.ExecuteReader();
-                        if (aReader.FieldCount > 0)
+                        if (aReader.HasRows)
                             Response.Write("0");
+                        else
+                            Response.Write("2");
                         aReader.Close();
                     }
                 }
