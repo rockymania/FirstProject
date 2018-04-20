@@ -6,37 +6,21 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>飲料頁面</title>
+    <link rel="stylesheet" type="text/css" href="../../CSS/Product.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
     <script type ="text/javascript" src="../js/ProductDataButton.js"></script>
-    
-    <style>
-        table 
-        {
-            word-break:break-all;
-        }
-
-        #Loading 
-        {
-            position:absolute;
-            width:50px;
-            top:50%;
-            right:50%;
-        }
-        
-    </style>
-
 
 </head>
-<body style="overflow-x:hidden;overflow-y:scroll;">
+<body>
     <form id="form1" runat="server">
-        <p id="Title" style="position:absolute;left:600px;top:0px; overflow-x:hidden">飲料菜單 </p>
-
-        <div id ="UserView"> </div>
-
+        <div id ="UserView">
+            <div style="width:1000px; text-align:center;margin:10px; padding:10px; font-weight:bolder;font-size:60px;">飲料菜單</div>
+            <div id="MeunButton"></div>
+        </div>
         <div id="Loading" style="display:none" > <img src="../Image/Loading.gif"/> <br />Loading</div>
-        
-
     </form>
+
+    <script type="text/javascript" src="../../js/MenuButton.js"></script>
 </body>
 </html>
 
@@ -52,13 +36,19 @@
                     success: function (JData)
                     {
                         var vCount = JData.length;
-                        
+                        var vContent = "";
+
                         for (var i = 0; i < vCount; i++)
                         {
                             var vAddStr = GetProductStr(JData[i]["Name"], JData[i]["PicName"], JData[i]["Introduction"], JData[i]["Price"], i);
 
+                            vContent += vAddStr;
+
                             document.all["UserView"].insertAdjacentHTML("BeforeEnd", vAddStr);
+                            
                         }
+
+                        //$("#UserView").html(vContent);
                     },
                     beforeSend: function ()
                     {
